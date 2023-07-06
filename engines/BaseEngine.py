@@ -1,6 +1,5 @@
 import numpy
 
-
 class BaseEngine:
     def __init__(self):
         self.number_of_results = 10
