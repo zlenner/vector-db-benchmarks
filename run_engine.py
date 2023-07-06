@@ -16,7 +16,7 @@ def run_engine(engine: BaseEngine):
 
         start = time.time()
         
-        engine.save_vectors(vector_slice)
+        engine.save_vectors(vector_slice, ids=[i for i in range(offset, offset+step)])
 
         print(f"Storage time (avg): {(time.time() - start) / len(vector_slice)}")
 

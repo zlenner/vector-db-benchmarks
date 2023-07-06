@@ -26,7 +26,7 @@ class Qdrant(BaseEngine):
         )
 
     
-    def save_vectors(self, vectors: numpy.ndarray):
+    def save_vectors(self, vectors: numpy.ndarray, ids: list[int]):
         # Define batch size
         batch_size = 100
 
@@ -40,7 +40,7 @@ class Qdrant(BaseEngine):
                 collection_name=self.collection_name,
                 points=[
                     models.PointStruct(
-                        id=i + batch_num * batch_size,  # Adjust ID for batch offset
+                        id=ids[i + batch_num * batch_size],  # Adjust ID for batch offset
                         vector=vector.tolist()
                     )
                     for i, vector in enumerate(batch)

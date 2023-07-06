@@ -22,10 +22,11 @@ class Pinecone(BaseEngine):
 
         self.index = pinecone.Index(variables["PINECONE_INDEX_NAME"])
     
-    def save_vectors(self, vectors: numpy.ndarray):
+    def save_vectors(self, vectors: numpy.ndarray, ids: list[int]):
         upsert_rows: list[tuple[str, list[float]]] = []
         for i, vector in enumerate(vectors):
-            upsert_rows.append((str(i), vector.tolist()))
+            id = ids[i]
+            upsert_rows.append((str(id), vector.tolist()))
 
         self.index.upsert(upsert_rows, batch_size=100)
     
