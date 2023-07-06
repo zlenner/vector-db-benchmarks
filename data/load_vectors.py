@@ -22,10 +22,10 @@ def download_file(url, filename):
 
 def load_vectors() -> numpy.ndarray:
     try:
-        vectors = numpy.load("data/vectors.npy")
+        vectors = numpy.load("data/vectors.npy", allow_pickle=True)
         return vectors
     except FileNotFoundError:
-        download_file("https://my-xyz.nyc3.digitaloceanspaces.com/numpy.py", "data/vectors.npy")
-        vectors = numpy.load("data/vectors.npy")
+        download_file("https://my-xyz.nyc3.digitaloceanspaces.com/vectors.npy", "data/vectors.npy")
+        vectors = numpy.load("data/vectors.npy", allow_pickle=True)
         return vectors
  
